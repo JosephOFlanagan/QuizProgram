@@ -3,8 +3,9 @@
 //This is a multi-use tool designed to display quizzes of any sort,
 //from specialist interest quizzes, family quizzes and even school
 //exams, this program is designed to read files and deliver the content
-//in an easily digestible manner and allow
+//in an easily digestible manner and allow users to test themselves on any form of quiz.
 //Version 1 Initialised Program
+//Version 2 Added commments and an extra line of text for clarification
 //*******************************************************************
 
 import java.util.Scanner;
@@ -33,9 +34,12 @@ public class QuizProgram
 
 	public static void main(String[] args) throws FileNotFoundException, IOException
 	{
+		//Create the quiz that is to be answered
 		CreateQuiz createQuiz = new CreateQuiz();
 		createQuiz.setQuiz();
 		Quiz quiz = new Quiz(createQuiz.questions, createQuiz.questionTypes, createQuiz.answers);
+		
+		//Variables for use in the main program
 		String[] questions;
 		String[] questionTypes;
 		List<String[]> multiChoiceAnswers;
@@ -49,21 +53,30 @@ public class QuizProgram
 		answers = quiz.answers;
 		score = 0;
 		
+		//Main quiz engine
 		for (int i = 0; i < questions.length; i++)
 		{
+			//Print the question
 			System.out.println(questions[i]);
+			//Check if the question is a multi-choice question or a single answer question
 			if (("Multi-Choice").equals(questionTypes[i]))
 			{
+				//Print all multi-choice answers
 				String[] mCA = multiChoiceAnswers.get(i);
 				for (int j = 0; j < mCA.length; j++)
 				{
 					System.out.println(mCA[j]);
 				}
+				System.out.println("Please enter the letter or number of the answer");
 			}
+
+			//User Input
 			Scanner sc = new Scanner(System.in);
 			userInput = sc.nextLine();
+			//Multi Choice scenario
 			if (("Multi-Choice").equals(questionTypes[i]))
 			{
+				//Check answer against correct answer
 				if ((userInput).equals(answers[i].substring(0,1)))
 				{
 					System.out.println("Correct answer");
@@ -76,6 +89,7 @@ public class QuizProgram
 			}
 			else 
 			{
+				//Check answer against correct answer
 				if ((userInput).equals(answers[i]))
 				{
 					System.out.println("Correct answer");
@@ -87,6 +101,7 @@ public class QuizProgram
 				}
 			}
 		}
+		//Calculate the score and give an appropriate message
 		System.out.println("Your score was " + score + " out of " + questions.length);
 		if (score == questions.length)
 		{
