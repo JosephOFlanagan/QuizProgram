@@ -3,8 +3,9 @@
 //This is a multi-use tool designed to display quizzes of any sort,
 //from specialist interest quizzes, family quizzes and even school
 //exams, this program is designed to read files and deliver the content
-//in an easily digestible manner and allow
+//in an easily digestible manner and allow users to test themselves on any form of quiz.
 //Version 1 Initialised Program
+//Version 2 Added commments and an extra line of text for clarification
 //*******************************************************************
 
 import java.util.Scanner;
